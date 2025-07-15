@@ -11,10 +11,10 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.next.rule=Host(`partiel.sutcorp-industry.com`)"
-      - "traefik.http.routers.next.entrypoints=websecure"
-      - "traefik.http.routers.next.tls.certresolver=myresolver"
-      - "traefik.http.services.next.loadbalancer.server.port=3000"
+      - "traefik.http.routers.nextpartiel.rule=Host(`partiel.sutcorp-industry.com`)"
+      - "traefik.http.routers.nextpartiel.entrypoints=websecure"
+      - "traefik.http.routers.nextpartiel.tls.certresolver=myresolver"
+      - "traefik.http.services.nextpartiel.loadbalancer.server.port=3000"
     networks:
       - frontend
       - coolify
