@@ -7,6 +7,18 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 
+interface Room {
+  id: string
+  name: string
+  capacity: number
+}
+
+interface Sponsor {
+  id: string
+  name: string
+  level: string
+}
+
 export default async function NewConferencePage() {
   const session = await auth()
   
@@ -19,8 +31,8 @@ export default async function NewConferencePage() {
     getSponsors()
   ])
 
-  const rooms = roomsResult.success && roomsResult.data ? roomsResult.data : []
-  const sponsors = sponsorsResult.success && sponsorsResult.data ? sponsorsResult.data : []
+  const rooms: Room[] = roomsResult.success && roomsResult.data ? roomsResult.data : []
+  const sponsors: Sponsor[] = sponsorsResult.success && sponsorsResult.data ? sponsorsResult.data : []
 
   return (
     <div className="container mx-auto py-8">
@@ -111,7 +123,7 @@ export default async function NewConferencePage() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Sélectionner une salle</option>
-                    {rooms.map((room) => (
+                    {rooms.map((room: Room) => (
                       <option key={room.id} value={room.id}>
                         {room.name} (Capacité: {room.capacity})
                       </option>
@@ -140,7 +152,7 @@ export default async function NewConferencePage() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Aucun sponsor</option>
-                  {sponsors.map((sponsor) => (
+                  {sponsors.map((sponsor: Sponsor) => (
                     <option key={sponsor.id} value={sponsor.id}>
                       {sponsor.name} ({sponsor.level})
                     </option>
