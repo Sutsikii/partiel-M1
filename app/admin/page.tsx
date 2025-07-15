@@ -6,6 +6,13 @@ import { AdminConferenceList } from "@/components/admin-conference-list"
 import Link from "next/link"
 import { Trophy, Users, Calendar, Settings, Plus } from "lucide-react"
 
+interface Sponsor {
+  id: string
+  name: string
+  email: string | null
+  level: string
+}
+
 export default async function AdminPage() {
   const [statsResult, conferencesResult, roomsResult, sponsorsResult] = await Promise.all([
     getAdminStats(),
@@ -157,7 +164,7 @@ export default async function AdminPage() {
             </div>
           </div>
           <div className="space-y-4">
-            {(sponsorsResult.data || []).slice(0, 3).map((sponsor) => (
+            {(sponsorsResult.data || []).slice(0, 3).map((sponsor: Sponsor) => (
               <Card key={sponsor.id} className="border-0 shadow-sm">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
