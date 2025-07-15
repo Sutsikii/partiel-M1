@@ -5,6 +5,24 @@ import Link from "next/link"
 import { Trophy, Calendar, MapPin, Clock, Users, Building, Edit } from "lucide-react"
 import Image from "next/image"
 
+interface Conference {
+  id: string
+  title: string
+  description: string
+  speaker: string
+  date: Date
+  duration: number
+  roomId: string
+  maxCapacity: number
+  room: {
+    name: string
+    capacity: number
+  }
+  _count?: {
+    attendees: number
+  }
+}
+
 export default async function SponsorConferencesPage() {
   const result = await getSponsorConferences()
 
@@ -35,7 +53,7 @@ export default async function SponsorConferencesPage() {
     )
   }
   
-  const conferences = sponsor.conferences || []
+  const conferences: Conference[] = sponsor.conferences || []
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -151,7 +169,7 @@ export default async function SponsorConferencesPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {conferences.reduce((total, conf) => total + (conf._count?.attendees || 0), 0)}
+              {conferences.reduce((total: number, conf: Conference) => total + (conf._count?.attendees || 0), 0)}
             </div>
             <p className="text-xs text-muted-foreground">
               Participants inscrits
@@ -167,7 +185,7 @@ export default async function SponsorConferencesPage() {
           <CardContent>
             <div className="text-2xl font-bold">
               {conferences.length > 0 
-                ? Math.round(conferences.reduce((total, conf) => total + (conf._count?.attendees || 0), 0) / conferences.length)
+                ? Math.round(conferences.reduce((total: number, conf: Conference) => total + (conf._count?.attendees || 0), 0) / conferences.length)
                 : 0
               }
             </div>
@@ -199,7 +217,7 @@ export default async function SponsorConferencesPage() {
           </Card>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {conferences.map((conference) => (
+            {conferences.map((conference: Conference) => (
               <Card key={conference.id} className="h-full hover:shadow-lg transition-shadow duration-200 border-l-4 border-l-yellow-500">
                 <CardHeader>
                   <CardTitle className="line-clamp-2 text-lg">{conference.title}</CardTitle>

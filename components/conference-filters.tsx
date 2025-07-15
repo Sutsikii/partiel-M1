@@ -60,7 +60,7 @@ export function ConferenceFilters({ rooms }: ConferenceFiltersProps) {
               onChange={(e) => updateFilters({ roomId: e.target.value || undefined })}
             >
               <option value="">Toutes les salles</option>
-              {rooms.map((room) => (
+              {rooms.map((room: Room) => (
                 <option key={room.id} value={room.id}>
                   {room.name} ({room.capacity} places)
                 </option>

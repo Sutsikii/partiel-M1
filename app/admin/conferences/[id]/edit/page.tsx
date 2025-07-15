@@ -272,7 +272,7 @@ export default function EditConferencePage() {
                     required
                   >
                     <option value="">Sélectionner une salle</option>
-                    {rooms.map((room) => (
+                    {rooms.map((room: Room) => (
                       <option key={room.id} value={room.id}>
                         {room.name} ({room.capacity} places)
                       </option>

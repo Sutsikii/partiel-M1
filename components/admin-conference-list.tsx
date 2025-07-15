@@ -59,7 +59,7 @@ export function AdminConferenceList({ conferences }: AdminConferenceListProps) {
 
   return (
     <div className="space-y-4">
-      {conferences.map((conference) => (
+      {conferences.map((conference: Conference) => (
         <Card key={conference.id}>
           <CardHeader>
             <div className="flex justify-between items-start">

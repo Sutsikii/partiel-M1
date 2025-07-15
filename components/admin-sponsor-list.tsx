@@ -105,7 +105,7 @@ export function AdminSponsorList({ sponsors }: { sponsors: Sponsor[] }) {
 
   return (
     <div className="space-y-4">
-      {sponsors.map((sponsor) => (
+      {sponsors.map((sponsor: Sponsor) => (
         <Card key={sponsor.id}>
           <CardHeader>
             <div className="flex justify-between items-start">
@@ -208,7 +208,22 @@ export function AdminSponsorList({ sponsors }: { sponsors: Sponsor[] }) {
               <div className="mt-4">
                 <p className="text-sm font-medium mb-2">Conférences sponsorisées</p>
                 <div className="flex flex-wrap gap-2">
-                  {(sponsor.conferences || []).map((conference) => (
+                  {(sponsor.conferences || []).map((conference: {
+                    id: string
+                    title: string
+                    description: string
+                    speaker: string
+                    date: Date
+                    duration: number
+                    roomId: string
+                    maxCapacity: number
+                    sponsorId: string | null
+                    room: {
+                      id: string
+                      name: string
+                      capacity: number
+                    }
+                  }) => (
                     <span 
                       key={conference.id}
                       className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-blue-100 text-blue-800"

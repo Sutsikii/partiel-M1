@@ -84,7 +84,7 @@ export function ConferenceList({ conferences, addToProgram }: ConferenceListProp
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {conferences.map((conference) => (
+      {conferences.map((conference: Conference) => (
         <Card key={conference.id} className="h-full hover:shadow-lg transition-shadow duration-200">
           <CardHeader>
             <CardTitle className="line-clamp-2 text-lg">{conference.title}</CardTitle>

@@ -77,7 +77,7 @@ export function ProgramList({ userConferences, removeFromProgram }: ProgramListP
     return `Dans ${diffDays} jours`
   }
 
-  const groupedConferences = userConferences.reduce((acc, userConference) => {
+  const groupedConferences = userConferences.reduce((acc: Record<string, UserConference[]>, userConference: UserConference) => {
     const date = new Date(userConference.conference.date).toDateString()
     if (!acc[date]) {
       acc[date] = []
@@ -88,7 +88,7 @@ export function ProgramList({ userConferences, removeFromProgram }: ProgramListP
 
   return (
     <div className="space-y-8">
-      {Object.entries(groupedConferences).map(([date, conferences]) => (
+      {Object.entries(groupedConferences).map(([date, conferences]: [string, UserConference[]]) => (
         <div key={date} className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold">
@@ -105,7 +105,7 @@ export function ProgramList({ userConferences, removeFromProgram }: ProgramListP
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {conferences.map((userConference) => (
+            {conferences.map((userConference: UserConference) => (
               <Card key={userConference.id} className="h-full hover:shadow-lg transition-shadow duration-200 border-l-4 border-l-primary">
                 <CardHeader>
                   <div className="flex justify-between items-start">

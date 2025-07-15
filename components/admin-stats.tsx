@@ -73,7 +73,13 @@ export function AdminStats({ stats }: AdminStatsProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Top des conférences</h3>
         <div className="space-y-2">
-          {stats.conferencesWithStats.slice(0, 5).map((conference) => (
+          {stats.conferencesWithStats.slice(0, 5).map((conference: {
+            id: string
+            title: string
+            speaker: string
+            room: { name: string }
+            _count: { attendees: number }
+          }) => (
             <Card key={conference.id} className="border-0 shadow-sm">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
@@ -102,7 +108,12 @@ export function AdminStats({ stats }: AdminStatsProps) {
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Détails par salle</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {stats.roomStats.map((room) => (
+          {stats.roomStats.map((room: {
+            roomId: string
+            roomName: string
+            totalRegistrations: number
+            occupancyRate: number
+          }) => (
             <Card key={room.roomId} className="border-0 shadow-sm">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
