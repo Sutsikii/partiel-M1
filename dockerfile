@@ -8,6 +8,10 @@ RUN npm install
 
 COPY . . 
 
+RUN npx prisma generate
+
+RUN npx prisma migrate deploy
+
 RUN npm run build
 
 COPY docker/next/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
